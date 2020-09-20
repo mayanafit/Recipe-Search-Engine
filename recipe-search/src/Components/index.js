@@ -1,0 +1,1 @@
+export { default as CardTemp } from './Card';
