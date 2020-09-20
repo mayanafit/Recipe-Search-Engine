@@ -52,16 +52,6 @@ const Result = (props) => {
         props.history.push(location)
     }
 
-    if (loading) return (
-        <div className="center_position">
-            <Lottie 
-                options={defaultOptions}
-                height={150}
-                width={150}
-                speed={2.5}
-            />
-        </div>
-    )
     return (
         <section className="result">
             <div className="flex flex-fd-c flex-ai-c result__search">
@@ -75,11 +65,24 @@ const Result = (props) => {
                     </form>
                 </div>
             </div>
-            <div className="result__data">
-                {
-                    recipes.length < 1 ? <h3 className="notFound">Sorry, we can't find any recipe.</h3> : recipes.map((recipe, index) => <CardTemp key={index} recipe={recipe} />)
-                }
-            </div>
+            {
+                loading ? (
+                    <div className="center_position">
+                        <Lottie 
+                            options={defaultOptions}
+                            height={150}
+                            width={150}
+                            speed={2.5}
+                        />
+                    </div>
+                ) : (
+                    <div className="result__data">
+                        {
+                            recipes.length < 1 ? <h3 className="notFound">Sorry, we can't find any recipe.</h3> : recipes.map((recipe, index) => <CardTemp key={index} recipe={recipe} />)
+                        }
+                    </div>
+                )
+            }
         </section>
     )
 }
